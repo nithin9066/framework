@@ -57,6 +57,8 @@ writable/logs/*
 writable/session/*
 !writable/session/index.html
 
+node_modules/*
+
 writable/uploads/*
 !writable/uploads/index.html
 
@@ -124,4 +126,6 @@ nb-configuration.xml
 /results/
 /phpunit*.xml
 /.phpunit.*.cache
+
+
 
