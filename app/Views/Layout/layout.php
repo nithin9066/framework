@@ -14,6 +14,10 @@
     <!-- CSS Assets -->
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+
     <!-- Javascript Assets -->
     <script src="<?= base_url('assets/js/app.js') ?>" defer></script>
 
@@ -24,6 +28,7 @@
         rel="stylesheet" />
     <?= $this->renderSection('head-scripts') ?>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
     <script>
         /**
@@ -33,10 +38,33 @@
             document.documentElement.classList.add("dark");
     </script>
     <style>
+        body {
+            font-family: 'DM Mono', monospace;
+        }
         .text-anywhere {
             overflow-wrap: anywhere;
         }
+        .pagination
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pagination li {
+            padding: .3rem .8rem;
+            border-radius: .3rem;
+            border: .5px solid gray;
+            margin: 5px;
+        }
+        .pagination li.active {
+            background: #e2e8f0;
+            color: black;
+            font-weight: 500;
+        }
+        
     </style>
+        <?= $this->renderSection('styles') ?>
+
 </head>
 
 <body x-data class="is-header-blur" x-bind="$store.global.documentBody">
@@ -56,7 +84,7 @@
                     <div class="flex pt-4">
                         <a href="/">
                             <img class="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
-                                src="assets/images/logo.png" alt="logo" />
+                                src="/assets/images/logo.png" alt="logo" />
                         </a>
                     </div>
 
@@ -183,7 +211,7 @@
                         <div x-data="usePopper({placement:'right-end',offset:12})"
                             @click.outside="isShowPopper && (isShowPopper = false)" class="flex">
                             <button @click="isShowPopper = !isShowPopper" x-ref="popperRef" class="avatar h-12 w-12">
-                                <img class="rounded-full" src="assets/images/avatar/avatar-12.jpg" alt="avatar" />
+                                <img class="rounded-full" src="/assets/images/avatar/avatar-12.jpg" alt="avatar" />
                                 <span
                                     class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                             </button>
@@ -194,7 +222,7 @@
                                     <div
                                         class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                                         <div class="avatar h-14 w-14">
-                                            <img class="rounded-full" src="assets/images/avatar/avatar-12.jpg" alt="avatar" />
+                                            <img class="rounded-full" src="/assets/images/avatar/avatar-12.jpg" alt="avatar" />
                                         </div>
                                         <div>
                                             <a href="#"
@@ -315,6 +343,7 @@
                                             </div>
                                         </a>
                                         <div class="mt-3 px-4">
+                                        <form action="<?= base_url('logout') ?>" method="post">
                                             <button
                                                 class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
@@ -325,6 +354,7 @@
                                                 </svg>
                                                 <span>Logout</span>
                                             </button>
+                                        </form>
                                         </div>
                                     </div>
                                 </div>
@@ -2069,7 +2099,7 @@
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center space-x-2">
                                                 <div class="avatar h-7 w-7">
-                                                    <img class="rounded-full" src="assets/images/avatar/avatar-20.jpg"
+                                                    <img class="rounded-full" src="/assets/images/avatar/avatar-20.jpg"
                                                         alt="avatar" />
                                                 </div>
                                                 <div>
@@ -2117,7 +2147,7 @@
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center space-x-2">
                                                 <div class="avatar h-7 w-7">
-                                                    <img class="rounded-full" src="assets/images/avatar/avatar-19.jpg"
+                                                    <img class="rounded-full" src="/assets/images/avatar/avatar-19.jpg"
                                                         alt="avatar" />
                                                 </div>
                                                 <div>
@@ -2165,7 +2195,7 @@
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center space-x-2">
                                                 <div class="avatar h-7 w-7">
-                                                    <img class="rounded-full" src="assets/images/avatar/avatar-18.jpg"
+                                                    <img class="rounded-full" src="/assets/images/avatar/avatar-18.jpg"
                                                         alt="avatar" />
                                                 </div>
                                                 <div>
@@ -2326,7 +2356,7 @@
                                 <div class="flex -space-x-3">
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                            src="assets/images/avatar/avatar-16.jpg" alt="avatar" />
+                                            src="/assets/images/avatar/avatar-16.jpg" alt="avatar" />
                                     </div>
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <div
@@ -2336,7 +2366,7 @@
                                     </div>
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                            src="assets/images/avatar/avatar-20.jpg" alt="avatar" />
+                                            src="/assets/images/avatar/avatar-20.jpg" alt="avatar" />
                                     </div>
                                 </div>
                                 <button
@@ -2377,7 +2407,7 @@
                                 <div class="flex -space-x-3">
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                            src="assets/images/avatar/avatar-17.jpg" alt="avatar" />
+                                            src="/assets/images/avatar/avatar-17.jpg" alt="avatar" />
                                     </div>
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <div
@@ -2387,7 +2417,7 @@
                                     </div>
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                            src="assets/images/avatar/avatar-19.jpg" alt="avatar" />
+                                            src="/assets/images/avatar/avatar-19.jpg" alt="avatar" />
                                     </div>
                                 </div>
                                 <button
@@ -2428,7 +2458,7 @@
                                 <div class="flex -space-x-3">
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                            src="assets/images/avatar/avatar-5.jpg" alt="avatar" />
+                                            src="/assets/images/avatar/avatar-5.jpg" alt="avatar" />
                                     </div>
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <div
@@ -2438,7 +2468,7 @@
                                     </div>
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                            src="assets/images/avatar/avatar-11.jpg" alt="avatar" />
+                                            src="/assets/images/avatar/avatar-11.jpg" alt="avatar" />
                                     </div>
                                 </div>
                                 <button
@@ -2479,7 +2509,7 @@
                                 <div class="flex -space-x-3">
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                            src="assets/images/avatar/avatar-8.jpg" alt="avatar" />
+                                            src="/assets/images/avatar/avatar-8.jpg" alt="avatar" />
                                     </div>
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <div
@@ -2489,7 +2519,7 @@
                                     </div>
                                     <div class="avatar h-7 w-7 hover:z-10">
                                         <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                            src="assets/images/avatar/avatar-12.jpg" alt="avatar" />
+                                            src="/assets/images/avatar/avatar-12.jpg" alt="avatar" />
                                     </div>
                                 </div>
                                 <button
@@ -2559,7 +2589,7 @@
                                     </div>
                                     <p class="py-1">John Doe changed his avatar photo</p>
                                     <div class="avatar mt-2 h-20 w-20">
-                                        <img class="mask is-squircle" src="assets/images/avatar/avatar-19.jpg" alt="avatar" />
+                                        <img class="mask is-squircle" src="/assets/images/avatar/avatar-19.jpg" alt="avatar" />
                                     </div>
                                 </div>
                             </li>
@@ -2667,7 +2697,7 @@
                                             <div class="flex flex-wrap -space-x-2">
                                                 <div class="avatar h-7 w-7 hover:z-10">
                                                     <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                                        src="assets/images/avatar/avatar-16.jpg" alt="avatar" />
+                                                        src="/assets/images/avatar/avatar-16.jpg" alt="avatar" />
                                                 </div>
 
                                                 <div class="avatar h-7 w-7 hover:z-10">
@@ -2679,17 +2709,17 @@
 
                                                 <div class="avatar h-7 w-7 hover:z-10">
                                                     <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                                        src="assets/images/avatar/avatar-20.jpg" alt="avatar" />
+                                                        src="/assets/images/avatar/avatar-20.jpg" alt="avatar" />
                                                 </div>
 
                                                 <div class="avatar h-7 w-7 hover:z-10">
                                                     <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                                        src="assets/images/avatar/avatar-8.jpg" alt="avatar" />
+                                                        src="/assets/images/avatar/avatar-8.jpg" alt="avatar" />
                                                 </div>
 
                                                 <div class="avatar h-7 w-7 hover:z-10">
                                                     <img class="rounded-full ring ring-white dark:ring-navy-700"
-                                                        src="assets/images/avatar/avatar-5.jpg" alt="avatar" />
+                                                        src="/assets/images/avatar/avatar-5.jpg" alt="avatar" />
                                                 </div>
                                             </div>
                                             <button
@@ -2786,8 +2816,28 @@
         </main>
     </div>
     <div id="x-teleport-target"></div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         window.addEventListener("DOMContentLoaded", () => Alpine.start());
+
+        $(function() {
+            $("[modal-target]").click(function() {
+                $($(this).attr('modal-target')).removeClass('hidden');
+            })
+            $("[modal-close]").click(function() {
+                $($(this).attr('modal-close')).addClass('hidden');
+            })
+
+            <?php if(session()->has("alert")) { ?>
+                Swal.fire({
+                    icon: '<?= session()->has("status") ? session("status") : '' ?>',
+                    title: '<?= session()->has("title") ? session("title") : '' ?>',
+                    text: '<?= session()->has("text") ? session("text") : '' ?>'
+                })
+            <?php } ?>
+
+        })
+
     </script>
 </body>
 

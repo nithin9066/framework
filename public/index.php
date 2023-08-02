@@ -64,4 +64,7 @@ $app->setContext($context);
  * up the engines and make this app do its thang.
  */
 
+helper('string');
+helper('inflector');
+
 $app->run();
